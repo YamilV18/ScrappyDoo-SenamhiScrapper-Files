@@ -125,6 +125,29 @@ En la primera ejecución el proceso puede tardar unos minutos mientras se instal
 ====================================================
 ```
 
+### Si el captcha no se activa automáticamente
+
+En ocasiones el widget de verificación Cloudflare Turnstile no se activa solo al navegar a la pestaña Tabla. En ese caso:
+
+1. Observar la ventana de Edge que abrió el programa.
+2. Si aparece el widget de verificación sin completarse, hacer clic en él manualmente para resolverlo.
+3. Una vez verificado, el programa continuará la descarga de forma automática sin necesidad de ninguna acción adicional.
+
+> Esto suele ocurrir en la primera ejecución o cuando la sesión de Edge lleva mucho tiempo inactiva.
+
+### Cerrar el entorno al terminar
+
+Una vez que el programa finalice o se cierre, la instancia de Edge que se abrió en modo depuración puede cerrarse manualmente:
+
+1. Cerrar la ventana de Edge que abrió `run.bat`.
+2. O bien, ejecutar en una terminal:
+
+```cmd
+taskkill /f /im msedge.exe
+```
+
+> **Nota:** Cerrar Edge no elimina el perfil de depuración en `C:\edge-debug-profile`. En la próxima ejecución de `run.bat` el entorno se reutilizará directamente.
+
 ### Si la aplicación se detiene inesperadamente
 
 El bat mostrará el mensaje `[!] La aplicacion se detuvo inesperadamente.` y esperará una tecla antes de cerrar, permitiendo leer el error en consola.
@@ -266,7 +289,7 @@ AÑO / MES / DÍA,HORA,TEMPERATURA (°C),...
 senamhi-scraper/
 ├── run.bat                # Inicio rápido — verifica entorno y lanza la app
 ├── main.py                # Punto de entrada principal
-├── main.py                # Punto de entrada alternativa por consola
+├── main_console.py        # Punto de entrada alternativa en modo consola
 ├── senamhi_metadata.py    # Clase SenamhiMetadata (scraping de regiones y estaciones)
 ├── senamhi_scraper.py     # Clase SenamhiScraper (descarga de CSV con Playwright)
 ├── requirements.txt
