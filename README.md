@@ -58,8 +58,8 @@ customtkinter
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/senamhi-scraper.git
-cd senamhi-scraper
+git clone https://github.com/YamilV18/ScrappyDoo---SENAMHI-SCRAPER.git
+cd ScrappyDoo---SENAMHI-SCRAPER
 ```
 
 ### 2. Verificar la ruta de msedge.exe
