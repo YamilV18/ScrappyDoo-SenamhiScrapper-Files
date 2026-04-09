@@ -77,17 +77,20 @@ class SenamhiMetadata:
 
         json_raw = match.group(1)
 
-        # Limpiar valores problemáticos antes de parsear
-        # 1. Reemplazar valores vacíos sin comillas → null
+         # ── Limpiar JSON inválido ──────────────────────────────────────────────
+        # 1. Números decimales sin cero inicial: -.123 → -0.123 / .123 → 0.123
+        json_raw = re.sub(r'(?<![.\d])-\.(\d)', r'-0.\1', json_raw)
+        json_raw = re.sub(r'(?<![.\d\-])\.(\d)', r'0.\1', json_raw)
+        # 2. Valores vacíos sin comillas
         json_raw = re.sub(r':\s*,', ': null,', json_raw)
         json_raw = re.sub(r':\s*}', ': null}', json_raw)
-        # 2. Eliminar comas finales antes de ] o } (JSON no las permite)
+        # 3. Comas finales antes de ] o }
         json_raw = re.sub(r',\s*([}\]])', r'\1', json_raw)
-        # 3. Reemplazar NaN e Infinity (válidos en JS pero no en JSON)
-        json_raw = re.sub(r':\s*NaN\b', ': null', json_raw)
-        json_raw = re.sub(r':\s*Infinity\b', ': null', json_raw)
+        # 4. NaN e Infinity
+        json_raw = re.sub(r':\s*NaN\b',       ': null', json_raw)
+        json_raw = re.sub(r':\s*Infinity\b',  ': null', json_raw)
         json_raw = re.sub(r':\s*-Infinity\b', ': null', json_raw)
-        # 4. Eliminar caracteres de control invisibles
+        # 5. Caracteres de control
         json_raw = re.sub(r'[\x00-\x1f\x7f]', '', json_raw)
 
         try:
