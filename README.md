@@ -1,5 +1,9 @@
 # ScrappyDoo — Descarga de Datos Hidrometeorológicos del SENAMHI
 
+Creado por: 
+- Yamil Valente Quispe Cuellar
+- Brayan Raul Condori Quispe
+
 Herramienta de scraping para descargar datos hidrometeorológicos de estaciones registradas en el [SENAMHI](https://www.senamhi.gob.pe), con interfaz gráfica y soporte para todas las regiones del Perú.
 
 ---
